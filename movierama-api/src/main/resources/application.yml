@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: movierama-api
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: false
+        format_sql: true
+    open-in-view: false
+  datasource:
+    url: jdbc:postgresql://localhost:5432/movierama
+    username: postgres
+    password: postgres
+
+movie-rama:
+  app:
+    secret: v9y$B&E)H@MbQeThWmZq4t7w!z%C*F-JaNdRfUjXn2r5u8x/A?D(G+KbPeShVkYp
+    expirationMn: 30
+    cors:
+      allowed-origins: http://localhost:3000
+
+
