@@ -50,7 +50,7 @@ public class MovieService {
         movieRepository::delete,
         () -> {
           throw new IllegalArgumentException(
-              "Movie '" + movieId + "' was not found for user '" + userExternalId + ";!");
+              "Movie '" + movieId + "' was not found for user '" + userExternalId + "!");
         });
   }
 }

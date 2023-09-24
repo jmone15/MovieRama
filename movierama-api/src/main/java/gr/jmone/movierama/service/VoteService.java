@@ -3,12 +3,8 @@ package gr.jmone.movierama.service;
 import gr.jmone.movierama.dto.VoteDto;
 import gr.jmone.movierama.dto.VoteResponseDto;
 import gr.jmone.movierama.exception.MovieRamaProcessingException;
-import gr.jmone.movierama.exception.VoteNotFoundException;
-import gr.jmone.movierama.model.Movie;
-import gr.jmone.movierama.model.User;
 import gr.jmone.movierama.repository.MovieRepository;
 import gr.jmone.movierama.utils.SecurityUtils;
-import java.util.UUID;
 import javax.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -52,7 +48,7 @@ public class VoteService {
         result =
             String.format(
                 "A negative vote to %s was retracted by %s", movie.getTitle(), user.getName());
-        movie.addHate(user);
+        movie.removeHate(user);
       } else if (likes.contains(user) && !voteDto.isLike()) {
         movie.removeLike(user);
         movie.addHate(user);
@@ -80,48 +76,6 @@ public class VoteService {
       log.info(result);
 
       return VoteResponseDto.builder().result(result).build();
-    }
-  }
-
-  @Transactional
-  public VoteDto listVote(String userAuth, UUID movieExternalId) {
-    var userExternalId = SecurityUtils.convertStringToUuid(userAuth);
-    var movie = getMovieByExternalId(movieExternalId);
-    var user = getUserByExternalId(userExternalId);
-    VoteDto vote = calculateVote(user, movie);
-
-    log.info("User {} checked vote {} ", user.getName(), vote);
-
-    return vote;
-  }
-
-  private Movie getMovieByExternalId(UUID movieExternalId) {
-    var movie = movieRepository.findByExternalId(movieExternalId);
-    if (movie == null) {
-      throw new IllegalArgumentException("Movie with ID '" + movieExternalId + "' does not exist!");
-    }
-    return movie;
-  }
-
-  private User getUserByExternalId(UUID userExternalId) {
-    var user = userService.findByExternalId(userExternalId);
-    if (user == null) {
-      throw new IllegalArgumentException("User ID '" + userExternalId + "' is not valid!");
-    }
-    return user;
-  }
-
-  private VoteDto calculateVote(User user, Movie movie) {
-    var fans = movie.getLikes();
-    var haters = movie.getHates();
-
-    if (fans.contains(user)) {
-      return new VoteDto(movie.getExternalId(), true);
-    } else if (haters.contains(user)) {
-      return new VoteDto(movie.getExternalId(), false);
-    } else {
-      throw new VoteNotFoundException(
-          user.getName() + " has not voted '" + movie.getTitle() + "' yet!");
     }
   }
 }

@@ -24,6 +24,7 @@
         <lombok.version>1.18.26</lombok.version>
         <lombok-mapstruct-binding>0.2.0</lombok-mapstruct-binding>
         <fmt.version>2.20</fmt.version>
+        <mockito.version>4.10.0</mockito.version>
     </properties>
     <dependencies>
         <dependency>
@@ -91,6 +92,23 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-inline</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
             <scope>test</scope>
         </dependency>
     </dependencies>

@@ -8,9 +8,11 @@ import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
+@Validated
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
