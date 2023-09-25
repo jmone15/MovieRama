@@ -1,9 +1,8 @@
 package gr.jmone.movierama.dto;
 
-import lombok.Data;
-
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import lombok.Data;
 
 @Data
 public class MovieDtoBase {

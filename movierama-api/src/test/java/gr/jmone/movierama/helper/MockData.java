@@ -59,8 +59,12 @@ public class MockData {
     signDto.setUsername("user");
     signDto.setPassword("password");
     signDto.setName("name");
-    signDto.setEmail("email");
+    signDto.setEmail("email@email.com");
 
     return signDto;
+  }
+
+  public static AuthResponseDto createAuthResponseDto() {
+    return AuthResponseDto.builder().token("authToken").build();
   }
 }
