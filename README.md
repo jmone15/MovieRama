@@ -48,8 +48,24 @@ The application is (yet another) social sharing platform where users can share t
       ```
       npm start
       ```
+ - **Importing data into the database**
+ 
+   In the directory `movierama-api/src/main/resources/` you can find the `data.sql` file which includes a collection of data that can be imported in the backend for testing purposes.
+   In order to trigger the data import to to the `application.yml` and change the following property to `always`:
 
+    ```
+    spring:
+       sql:
+        init:
+          mode: always #initially set to never run
+    ```
+   You can also set the property to `always` before starting the backend for the first time. It will proceed to import the data after the creation of the entities (Which is automatically executed on startup).
+
+   **Note**: After running the application with the import script enabled please proceed to set the property again to `never` to avoid having issues after re-running the `movierama-api`.
+    
 ### movierama-api
+
+
 
 `Spring Boot` Web Java backend application that exposes a Rest API to create, retrieve and delete movies. If a user
 has `ADMIN` role he/she can also retrieve information of other users or delete them. The application secured endpoints
