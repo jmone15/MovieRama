@@ -65,7 +65,11 @@ The application is (yet another) social sharing platform where users can share t
     
 ### movierama-api
 
+### ER Diagram
 
+<p align="center">
+  <img src="https://github.com/jmone15/MovieRama/blob/main/db-diagram/ER-diagram.png" alt="Sublime's custom image"/>
+</p>
 
 `Spring Boot` Web Java backend application that exposes a Rest API to create, retrieve and delete movies. If a user
 has `ADMIN` role he/she can also retrieve information of other users or delete them. The application secured endpoints
